@@ -3,6 +3,9 @@ Générateur de Profil Aérodynamique NACA
 Ce programme génère et affiche le profil d'une aile symétrique en utilisant les équations du National Advisory Committee
 for Aeronautics (NACA).
 
+Fonction:
+    - naca00xx_profile: Génère et affiche le profil d'une aile NACA 4 chiffres.
+
 Auteur: Lou-Anne Villette
 Date: 03/06/2024
 """
@@ -78,5 +81,14 @@ def naca00xx_profile(profile_nb, chord_lgth, points_nb, distrib_type):
     return max_thickness, max_thickness_position
 
 
-# Test de la fonction "naca00xx_profile"
-naca00xx_profile(12, 3, 100, "non-uniforme")
+# Point d'entrée du programme
+if __name__ == "__main__":
+    # Demande des entrées utilisateur pour chaque paramètre requis
+    profile_number = int(input("Entrez le numéro du profil NACA 4 chiffres symétrique 00xx (ex: 0012 ou 12): "))
+    chord_length = float(input("Entrez la longueur de la corde du profil (en mètres): "))
+    points_number = int(input("Entrez le nombre de points le long de la corde pour le tracé: "))
+    distribution_type = input(
+        "Entrez le type de distribution de points le long de la corde (linéaire/non-uniforme): ").lower()
+
+    # Appel de la fonction pour générer et afficher le profil
+    naca00xx_profile(profile_number, chord_length, points_number, distribution_type)

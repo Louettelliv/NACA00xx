@@ -88,7 +88,7 @@ def naca00xx_profile(profile_nb, chord_lgth, points_nb, distrib_type):
     max_thickness_position = x_up[np.argmax(y_up)]
 
     # Affichage des résultats
-    print(f"Epaisseur maximale: {max_thickness:.4f} m")
+    print(f"\nEpaisseur maximale: {max_thickness:.4f} m")
     print(f"Position de l'épaisseur maximale: {max_thickness_position:.4f} m")
 
     # Affichage du graphique avec le profil de l'aile

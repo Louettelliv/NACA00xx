@@ -43,8 +43,8 @@ def validate_input(demand, min_value=None, input_type=float, max_value=None):
             if max_value is not None and user_input > max_value:
                 raise ValueError(f"La valeur doit être inférieure ou égale à {max_value}.")
             return user_input
-        except ValueError as ve:
-            print(ve)
+        except ValueError as numerical_ve:
+            print(numerical_ve)
 
 
 def naca00xx_profile(profile_nb, chord_lgth, points_nb, distrib_type):
@@ -119,10 +119,15 @@ if __name__ == "__main__":
                                     int, 99)
     chord_length = validate_input("Entrez la longueur de la corde du profil (en mètres): ", 0)
     points_number = validate_input("Entrez le nombre de points le long de la corde pour le tracé: ", 2, int)
-    distribution_type = input(
-        "Entrez le type de distribution de points le long de la corde (linéaire/non-uniforme): ").lower()
-    if distribution_type not in VALID_DISTRIBUTIONS:  # Vérification si le type de distribution est valide
-        raise ValueError("Type de distribution invalide. Utilisez 'linéaire' ou 'non-uniforme'.")
+    while True:
+        try:
+            distribution_type = input(
+                "Entrez le type de distribution de points le long de la corde (linéaire/non-uniforme): ").lower()
+            if distribution_type not in VALID_DISTRIBUTIONS:  # Vérification si le type de distribution est valide
+                raise ValueError("Type de distribution invalide. Utilisez 'linéaire' ou 'non-uniforme'.")
+            break
+        except ValueError as literal_ve:
+            print(literal_ve)
 
     # Appel de la fonction pour générer et afficher le profil
     naca00xx_profile(profile_number, chord_length, points_number, distribution_type)
